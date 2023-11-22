@@ -1,0 +1,42 @@
+.cap{
+background-color: rgb(138, 85, 182);
+}
+.divnoticias{
+    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 500px;
+  background-color: lightblue;
+  flex-direction: column;
+}
+.boton{
+    width: 80%;
+    padding: 0.8em 0;
+    border: none;
+    border-bottom: solid 1px;
+    border-top: solid 1px;
+    cursor: pointer;
+    font-size: 1em;
+    position: relative;
+    transition: all 2s;
+}
+
+.Descripcion{
+    position: relative;
+    display: none;
+    top: 50%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.divnoticias:hover .Descripcion{
+    width: 60vh;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

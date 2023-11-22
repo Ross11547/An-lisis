@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Sucursales {
+  id_sucursal Int           @id @default(autoincrement())
+  telefono    Int
+  calles      String
+  numero      Int
+  zona        String
+  promociones Promociones[]
+}
+
+model Productos {
+  id            Int             @id @default(autoincrement())
+  nombre        String
+  descripcion   String
+  cantidad      Int
+  precio        Float
+  peso_neto     Float
+  descuento     Int
+  foto          String
+  blog          blog[]
+  promociones   Promociones[]
+  detalle_venta Detalle_Venta[]
+}
+
+model blog {
+  id_blog      Int        @id @default(autoincrement())
+  descripcion  String
+  id_productos Int
+  productos    Productos? @relation(fields: [id_productos], references: [id])
+}
+
+model Promociones {
+  id_promociones Int         @id @default(autoincrement())
+  nombre         String
+  fecha_inicio   DateTime
+  fecha_fin      DateTime
+  descuento      Int
+  id_sucur       Int
+  sucur          Sucursales? @relation(fields: [id_sucur], references: [id_sucursal])
+  id_produc      Int
+  produc         Productos?  @relation(fields: [id_produc], references: [id])
+}
+
+model Usuario {
+  id_usuario Int     @id @default(autoincrement())
+  nombres    String
+  apellidos  String
+  CI         Int
+  celular    Int
+  rol        String
+  user       String
+  password   String
+  correo     String  
+  venta      Venta[]
+}
+
+model Venta {
+  id_venta      Int             @id @default(autoincrement())
+  costo_total   Float
+  fecha_venta   DateTime        @default(now())
+  descuento     Int
+  id_usu        Int
+  usuario       Usuario?        @relation(fields: [id_usu], references: [id_usuario])
+  detalle_venta Detalle_Venta[]
+}
+
+model Detalle_Venta {
+  id_detalle_venta Int        @id @default(autoincrement())
+  cantidad         Int
+  descuento        Int
+  tipo_pago        String
+  id_vent          Int
+  vent             Venta?     @relation(fields: [id_vent], references: [id_venta])
+  id_product       Int
+  product          Productos? @relation(fields: [id_product], references: [id])
+}
