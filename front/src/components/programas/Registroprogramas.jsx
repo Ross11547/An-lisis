@@ -13,29 +13,25 @@ import {
 import { useState, useEffect } from "react";
 import { getBase64 } from "../../services/converter";
 import { postPrograma, updatePrograma } from "../../services/programa";
+import { getPortada } from "../../services/portada";
+import { UseFech } from "../../hooks/useFech";
+import { getCapsulas } from "../../services/capsulas";
 const Registroprogramas = ({ getApi, actual, setActual, can }) => {
   const [nombre, setNombre] = useState("");
-  const [foto, setFoto] = useState("");
-  const [contenido_a, setContenido_a] = useState("");
-  const [contenido_b, setContenido_b] = useState("");
-  const [titulo, setTitulo] = useState("");
-  const [titulo_desc, setTitulo_desc] = useState("");
-  const [compemento, setCompemento] = useState("");
+  const [fechaini, setFechaini] = useState("");
+  const [fechafin, setFechafin] = useState("");
+  const [descuento, setDescuento] = useState();
+  const [idsucu, setIducu] = useState();
+  const [idprod, setIdprod] = useState();
 
-  const llenarimagen = (e) => {
-    getBase64(e.target.files[0], (resultado) => {
-      setFoto(resultado);
-    });
-  };
+  const { res: sucursales } = UseFech(getCapsulas);
+  const { res: producto } = UseFech(getPortada);
   useEffect(() => {
     if (Object.keys(actual).length > 0) {
       setNombre(actual.nombre);
-      setFoto(actual.foto);
-      setContenido_a(actual.contenido_a);
-      setContenido_b(actual.contenido_b);
-      setTitulo(actual.titulo);
-      setTitulo_desc(actual.titulo_desc);
-      setCompemento(actual.compemento);
+      setFechaini(actual.fecha_inicio);
+      setFechafin(actual.fecha_fin);
+      setDescuento(actual.descuento);
     }
   }, [actual]);
   return (
@@ -46,18 +42,20 @@ const Registroprogramas = ({ getApi, actual, setActual, can }) => {
         </Divh1>
         <Divtotal>
           <Divtext1>
-            
             <Divinput>
               <Label htmlFor="">Nombre</Label>
               <Input
                 type="text"
-                
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
               />
             </Divinput>
             <Divinput>
               <Label htmlFor="">Fecha inicio</Label>
               <Input
                 type="date"
+                value={fechaini}
+                onChange={(e) => setFechaini(e.target.value)}
               />
             </Divinput>
           </Divtext1>
@@ -66,25 +64,43 @@ const Registroprogramas = ({ getApi, actual, setActual, can }) => {
               <Label htmlFor="">Fecha fin</Label>
               <Input
                 type="date"
+                value={fechafin}
+                onChange={(e) => setFechafin(e.target.value)}
               />
             </Divinput>
             <Divinput>
               <Label htmlFor="">Descuento</Label>
               <Input
                 type="number"
+                value={descuento}
+                onChange={(e) => setDescuento(e.target.value)}
               />
             </Divinput>
             <Divinput>
               <Label htmlFor="">Sucusal</Label>
-              <Input
-                type="text"
-              />
+              <select onChange={(e) => setIducu(e.target.value)}>
+                <option value="">Seleccione una sucursal</option>
+                {
+                  sucursales?.map((v, i) => (
+                    <option value={v.id_sucursal} key={i}>
+                      {v.zona}
+                    </option>
+                  ))
+                }
+              </select>
             </Divinput>
             <Divinput>
               <Label htmlFor="">Producto</Label>
-              <Input
-                type="number"
-              />
+              <select onChange={(e) => setIdprod(e.target.value)} >
+                <option value="">Seleccione una programacion</option>
+                {
+                  producto?.map((v, i) => (
+                    <option value={v.id} key={i}>
+                      {v.nombre}
+                    </option>
+                  ))
+                }
+              </select>
             </Divinput>
           </Divtext2>
         </Divtotal>
@@ -118,21 +134,16 @@ const Registroprogramas = ({ getApi, actual, setActual, can }) => {
             } else {
               postPrograma(
                 nombre,
-                foto,
-                contenido_a,
-                contenido_b,
-                titulo,
-                titulo_desc,
-                compemento,
-
+                fechaini,
+                fechafin,
+                descuento,
+                idsucu,
+                idprod,
                 () => {
                   setNombre("");
-                  setFoto("");
-                  setContenido_a("");
-                  setContenido_b("");
-                  setTitulo("");
-                  setTitulo_desc("");
-                  setCompemento("");
+                  setFechaini("");
+                  setFechafin("");
+                  setDescuento("");
                   getApi();
                 }
               );

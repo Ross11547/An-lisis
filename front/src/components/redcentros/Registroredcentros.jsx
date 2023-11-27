@@ -9,27 +9,19 @@ import {
   Botonagregar,
 } from "../../style/crud";
 import { postRed, updateRed } from "../../services/red";
+import { UseFech } from "../../hooks/useFech";
+import { getPortada } from "../../services/portada";
 
 const Registroredcentros = ({ getApi, actual, setActual }) => {
   const [red, setRed] = useState("");
   const [idProducto, setIdproducto] = useState();
   const [descripcion, setDescripcion] = useState("");
-  const [data, setData] = useState([]);
-  const getProducto = async () => {
-    const response = await fetch(`http://localhost:5000/productos`);
-    const js = await response.json();
-    setData(js.data)
-  }
-  useEffect(() => {
-    getProducto();
-  }, [])
-  console.log(data);
+  const{res}=UseFech(getPortada);
   useEffect(() => {
     if (Object.keys(actual).length > 0) {
       setRed(actual.red);
     }
   }, [actual]);
-
   return (
     <Divformulario>
       <Form>
@@ -46,11 +38,11 @@ const Registroredcentros = ({ getApi, actual, setActual }) => {
         </Divinput>
         <Divinput>
           <Label htmlFor="">Producto</Label>
-          <select name="" id="">
-            <option value="">Seleccione un producto</option>
+          <select onChange={(e)=>setIdproducto(e.target.value)}>
+            <option >Seleccione un producto</option>
             {
-              data.map((v, i) => (
-                <option key={i}>{v.nombre}</option>
+              res?.map((v, i) => (
+                <option key={i} value={v.id}>{v.nombre}</option>
               ))
             }
           </select>
@@ -70,8 +62,8 @@ const Registroredcentros = ({ getApi, actual, setActual }) => {
                 }
               );
             } else {
-              postRed(red, () => {
-                setRed("");
+              postRed(descripcion,idProducto, () => {
+                setDescripcion("");              
                 getApi();
               });
             }

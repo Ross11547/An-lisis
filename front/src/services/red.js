@@ -3,7 +3,7 @@ const baseUrl =
 
 export const getRed = async () => {
   try {
-    const response = await fetch(`${baseUrl}red`, {
+    const response = await fetch(`${baseUrl}blog`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -16,7 +16,7 @@ export const getRed = async () => {
 };
 
 export const deleteRed = async (id, callback) => {
-  const response = await fetch(`${baseUrl}red/${id}`, {
+  const response = await fetch(`${baseUrl}blog/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -43,15 +43,16 @@ export const updateRed = async (actual, callback) => {
     callback();
   }
 }
-export const postRed = async (red, callback) => {
-  const response = await fetch(`${baseUrl}red`, {
+export const postRed = async (descripcion,idProducto, callback) => {
+  const response = await fetch(`${baseUrl}blog`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       accept: "application/json",
     },
     body: JSON.stringify({
-      red: red,
+      descripcion: descripcion,
+      id_productos:Number(idProducto)
     }),
   });
   if (response.ok) {

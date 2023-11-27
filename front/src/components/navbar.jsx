@@ -19,7 +19,7 @@ const Navbar = () => {
           <Logo>
             <h1>Ceibo</h1>
           </Logo>
-          <Linkes to="portada">
+          <Linkes to="/">
             <Imgicons src={Portadaicons} alt="" /> Producto
           </Linkes>
           <Linkes to="capsulas">

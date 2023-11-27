@@ -10,7 +10,9 @@ const productos = require("./controllers/productos");
 const promociones = require("./controllers/promociones");
 const sucursales = require("./controllers/sucursales");
 const ventas = require("./controllers/ventas");
-const cors = require("cors")
+const cors = require("cors");
+require('dotenv').config();
+
 app.use(bodyparser.urlencoded({
     extended: false
 }));

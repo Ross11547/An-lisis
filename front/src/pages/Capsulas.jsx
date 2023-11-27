@@ -31,16 +31,6 @@ import { showImagen } from "../services/noimagen";
 const Capsulas = () => {
   const { loading, getApi, res: capsula } = UseFech(getCapsulas);
   const [actual, setActual] = useState({});
-  const [data,setData]=useState([]);
-  const getProducto = async () => {
-    const response = await fetch(`http://localhost:5000/sucursales`);
-    const js = await response.json();
-    setData(js)
-  }
-  useEffect(() => {
-    getProducto();
-  }, [])
-  console.log(data);
   if (loading) {
     return (
       <Divloading>
@@ -48,7 +38,6 @@ const Capsulas = () => {
       </Divloading>
     );
   }
-
   return (
     <Container>
       <Containerdiv>
@@ -74,7 +63,7 @@ const Capsulas = () => {
                 </Tr>
               </thead>
               <tbody>
-                {data?.map((v, i) => (
+                {capsula?.map((v, i) => (
                   <Trbody className="row" key={i}>
                     <Td>{1 + i}</Td>
                     <Td>{v.telefono}</Td>
@@ -95,7 +84,7 @@ const Capsulas = () => {
                       </Botonesacciones>
                       <Botonesacciones
                         onClick={() => {
-                          deleteCapsulas(v.id, getApi);
+                          deleteCapsulas(v.id_sucursal, getApi);
                         }}
                       >
                         <Imgeliminar src={Eliminar} alt="" />

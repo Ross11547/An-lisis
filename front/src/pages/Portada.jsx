@@ -28,18 +28,8 @@ import { deletePortada } from "../services/portada";
 import { showImagen } from "../services/noimagen";
 const Portada = () => {
   const { loading, getApi, res: portad } = UseFech(getPortada);
-  const [data, setData] = useState([]);
-  const [actual, setActual] = useState({});
-
-  const getProducto = async () => {
-    const response = await fetch(`http://localhost:5000/productos`);
-    const js = await response.json();
-    setData(js)
-  }
-  useEffect(() => {
-    getProducto();
-  }, [])
-  console.log(data);
+ console.log(portad);
+  const [actual, setActual] = useState({});  
   if (loading) {
     return (
       <Divloading>
@@ -75,7 +65,7 @@ const Portada = () => {
                 </Tr>
               </thead>
               <tbody>
-                {data?.map((v, i) => (
+                {portad?.map((v, i) => (
                   <Trbody className="row" key={i}>
                     <Td>{1 + i}</Td>
                     <Tddescripcion>{v.nombre}</Tddescripcion>

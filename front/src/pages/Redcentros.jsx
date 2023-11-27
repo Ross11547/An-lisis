@@ -24,18 +24,8 @@ import { UseFech } from "../hooks/useFech";
 import { deleteRed } from "../services/red";
 import { useState,useEffect } from "react";
 const Redcentros = () => {
-  const { loading, getApi, res: red } = UseFech(getRed);
+  const { loading, getApi, res: blog } = UseFech(getRed);
   const [actual, setActual] = useState({});
-const [data,setData]=useState([]);
-  const getProducto = async () => {
-    const response = await fetch(`http://localhost:5000/blog`);
-    const js = await response.json();
-    setData(js)
-  }
-  useEffect(() => {
-    getProducto();
-  }, [])
-  console.log(data);
   if (loading) {
     return (
       <Divloading>
@@ -65,9 +55,8 @@ const [data,setData]=useState([]);
                   <Th>Acciones</Th>
                 </Tr>
               </thead>
-
               <tbody>
-                {data?.map((v, i) => (
+                {blog?.map((v, i) => (
                   <Trbody className="row" key={i}>
                     <Td>{1 + i}</Td>
                     <Td>{v.productos.nombre}</Td>
@@ -82,7 +71,7 @@ const [data,setData]=useState([]);
                       </Botonesacciones>
                       <Botonesacciones
                         onClick={() => {
-                          deleteRed(v.id, getApi);
+                          deleteRed(v.id_blog, getApi);
                         }}
                       >
                         <Imgeliminar src={Eliminar} alt="" />

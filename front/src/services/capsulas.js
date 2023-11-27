@@ -15,7 +15,7 @@ export const getCapsulas = async () => {
   }
 };
 export const deleteCapsulas = async (id, callback) => {
-  const response = await fetch(`${baseUrl}capsula/${id}`, {
+  const response = await fetch(`${baseUrl}sucursales/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -28,35 +28,35 @@ export const deleteCapsulas = async (id, callback) => {
 
 }
 export const updateCapsulas = async (actual, callback) => {
-  const response = await fetch(`${baseUrl}capsula/${actual.id}`, {
+  const response = await fetch(`${baseUrl}sucursales/${actual.id_sucursal}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      accept: "application/json",
+      "accept": "application/json",
     },
     body: JSON.stringify({
-      titulo: actual.titulo,
-      foto: actual.foto,
-      descripcion: actual.descripcion,
-      mas_detalles: actual.mas_detalles,
+      telefono:Number(actual.telefono),
+      calles: actual.calles,
+      numero:Number(actual.numero),
+      zona: actual.zona,
     }),
   });
   if (response.ok) {
     callback();
   }
 }
-export const postCapsulas = async (titulo, foto, descripcion, masdetalle, callback) => {
-  const response = await fetch(`${baseUrl}capsula`, {
+export const postCapsulas = async (telefono, calles, numero, zona, callback) => {
+  const response = await fetch(`${baseUrl}sucursales`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       accept: "application/json",
     },
     body: JSON.stringify({
-      titulo: titulo,
-      foto: foto,
-      descripcion: descripcion,
-      mas_detalles: masdetalle,
+      telefono:Number(telefono),
+      calles: calles,
+      numero: Number(numero),
+      zona: zona,
     })
   });
   if (response.ok) {

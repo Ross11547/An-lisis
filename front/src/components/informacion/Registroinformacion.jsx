@@ -14,22 +14,24 @@ import { useState, useEffect } from "react";
 import { getBase64 } from "../../services/converter";
 import { postInformacion, updateInformacion } from "../../services/informacion";
 const Registroinformacion = ({ getApi, actual, setActual, cant }) => {
-  const [titulo, setTitulo] = useState("");
-  const [foto, setFoto] = useState("");
-  const [descripcion, setDescripcion] = useState("");
-  const [mision, setMision] = useState("");
-  const [fotomision, setFotomision] = useState("");
-  const [vision, setVision] = useState("");
-  const [fotovision, setFotovision] = useState("");
+  const [nombres,setNombres]=useState("");
+  const [apellidos,setApellidos]=useState("");
+  const [CI,setCi]=useState();
+  const [celular,setCelular]=useState();
+  const [rol,setRol]=useState("");
+  const [password,setPassword]=useState("");
+  const [user,setUser]=useState("");
+  const [correo,setCorreo]=useState("");
   useEffect(() => {
     if (Object.keys(actual).length > 0) {
-      setTitulo(actual.nombre);
-      setFoto(actual.foto);
-      setMision(actual.mision);
-      setFotomision(actual.foto_m);
-      setDescripcion(actual.descripcion);
-      setVision(actual.vision);
-      setFotovision(actual.foto_v);
+      setNombres(actual.nombres);
+      setApellidos(actual.apellidos);
+      setCi(actual.CI);
+      setCelular(actual.celular);
+      setRol(actual.rol);
+      setUser(actual.user);
+      setPassword(actual.password);
+      setCorreo(actual.correo);
     }
   }, [actual]);
 
@@ -45,40 +47,50 @@ const Registroinformacion = ({ getApi, actual, setActual, cant }) => {
               <Label htmlFor="">Nombre</Label>
               <Input
                 type="text"
+                value={nombres}
+                onChange={(e)=>setNombres(e.target.value)}
               />
             </Divinput>
             <Divinput>
               <Label htmlFor="">Apellidos</Label>
               <Input
                 type="text"
+                value={apellidos}
+                onChange={(e)=>setApellidos(e.target.value)}
               />
             </Divinput>
             <Divinput>
               <Label htmlFor="">Password</Label>
-             <Input type="text"/>
+             <Input type="text"  value={password}
+                onChange={(e)=>setPassword(e.target.value)}/>
             </Divinput>
             <Divinput>
               <Label htmlFor="">correo</Label>
-             <Input type="string"/>
+             <Input type="text"  value={correo}
+                onChange={(e)=>setCorreo(e.target.value)}/>
             </Divinput>
           </Divinput1>
           <Divinput2>
             <Divinput>
               <Label htmlFor="">Ci</Label>
-              <Input type="text"
+              <Input type="text"  value={CI}
+                onChange={(e)=>setCi(e.target.value)}
               />
             </Divinput>
             <Divinput>
               <Label htmlFor="">Celular</Label>
-             <Input type="number"/>
+             <Input type="number"  value={celular}
+                onChange={(e)=>setCelular(e.target.value)}/>
             </Divinput>
             <Divinput>
-              <Label htmlFor="">Celular</Label>
-             <Input type="number"/>
+              <Label htmlFor="">Rol</Label>
+             <Input type="text"  value={rol}
+                onChange={(e)=>setRol(e.target.value)}/>
             </Divinput>
             <Divinput>
               <Label htmlFor="">Usuario</Label>
-             <Input type="text"/>
+             <Input type="text"  value={user}
+                onChange={(e)=>setUser(e.target.value)}/>
             </Divinput>
             
           </Divinput2>
@@ -101,33 +113,29 @@ const Registroinformacion = ({ getApi, actual, setActual, cant }) => {
                 },
                 () => {
                   setActual({});
-                  setTitulo("");
-                  setFoto("");
-                  setMision("");
-                  setFotomision("");
-                  setDescripcion("");
-                  setVision("");
-                  setFotovision("");
+                  setNombres("");
+                  setApellidos("");
+                  setPassword("");
+                  setCorreo("");
+                  setCi("");
+                  setCelular("");
+                  setRol("");
+                  setUser("");
                   getApi();
                 }
               );
             } else {
               postInformacion(
-                titulo,
-                foto,
-                mision,
-                fotomision,
-                descripcion,
-                vision,
-                fotovision,
+                nombres, apellidos, CI, celular, rol, user, password,correo,
                 () => {
-                  setTitulo("");
-                  setFoto("");
-                  setMision("");
-                  setFotomision("");
-                  setDescripcion("");
-                  setVision("");
-                  setFotovision("");
+                  setNombres("");
+                  setApellidos("");
+                  setPassword("");
+                  setCorreo("");
+                  setCi("");
+                  setCelular("");
+                  setRol("");
+                  setUser("");
                   getApi();
                 }
               );

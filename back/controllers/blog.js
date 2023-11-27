@@ -4,7 +4,11 @@ const app = express();
 const prisma = new PrismaClient();
 
 app.get('/blog',async(req,res)=>{
-    const blog = await prisma.blog.findMany({});
+    const blog = await prisma.blog.findMany({
+        include:{
+            productos:true
+        }
+    });
     res.json(blog);
 })
 

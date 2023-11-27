@@ -26,7 +26,6 @@ const Registrocapsulas = ({ getApi, actual, setActual }) => {
       setZona(actual.zona);
     }
   }, [actual]);
-
   return (
     <Divformulario>
       <Form>
@@ -44,7 +43,7 @@ const Registrocapsulas = ({ getApi, actual, setActual }) => {
               />
             </Divinput>
             <Divinput>
-              <Label htmlFor=""> Calles</Label>
+              <Label htmlFor="">Calles</Label>
               <Input
                 type="text"
                 value={calles}
@@ -53,7 +52,6 @@ const Registrocapsulas = ({ getApi, actual, setActual }) => {
             </Divinput>
           </Divinputtextp>
           <Divtextarea>
-           
             <Divinput>
               <Label>Numero</Label>
               <Input
@@ -72,33 +70,32 @@ const Registrocapsulas = ({ getApi, actual, setActual }) => {
             </Divinput>
           </Divtextarea>
         </Divinputotal>
-
         <Botonagregar
           onClick={() => {
             if (Object.keys(actual).length > 0) {
               updateCapsulas(
                 {
-                  id: actual.id,
-                  titulo: titulo,
-                  foto: foto,
-                  descripcion: descripcion,
-                  mas_detalles: masdetalle,
+                  id_sucursal: actual.id_sucursal,
+                  telefono: actual.telefono,
+                  calles: actual.calles,
+                  numero: actual.numero,
+                  zona: actual.zona,
                 },
                 () => {
                   setActual({});
-                  setTitulo("");
-                  setFoto("");
-                  setDescripcion("");
-                  setMasdetalle("");
+                  setTelefono("");
+                  setCalles("");
+                  setNumero("");
+                  setZona("");
                   getApi();
                 }
               );
             } else {
-              postCapsulas(titulo, foto, descripcion, masdetalle, () => {
-                setTitulo("");
-                setFoto("");
-                setDescripcion("");
-                setMasdetalle("");
+              postCapsulas(telefono, calles, numero, zona, () => {
+                setTelefono("");
+                setCalles("");
+                setNumero("");
+                setZona("");
                 getApi();
               });
             }

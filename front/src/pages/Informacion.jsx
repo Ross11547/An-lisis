@@ -28,7 +28,6 @@ const Informacion = () => {
   const { loading, getApi, res } = UseFech(getInformacion);
   const [actual, setActual] = useState({});
   const [data, setData] = useState([]);
-
   const getProducto = async () => {
     const response = await fetch(`http://localhost:5000/usuario`);
     const js = await response.json();
@@ -74,18 +73,19 @@ const Informacion = () => {
                 </Tr>
               </thead>
               <tbody>
-                {data?.map((v, i) => (
+                {res.data?.map((v, i) => (
                   <Trbody className="row" key={i}>
                     <Td>{i+1}</Td>
-                    <Td>{v.nombre}</Td>
-                    <Td>{showImagen(v.foto)}</Td>
+                    <Td>{v.nombres}</Td>
+                    <Td>{v.apellidos}</Td>
                     <Td>
-                      <Pcon>{v.descripcion}</Pcon>
+                      <Pcon>{v.CI}</Pcon>
                     </Td>
-                    <Td><p>{v.mision}</p></Td>
-                    <Td>{showImagen(v.foto_m)}</Td>
-                    <Td><p>{v.vision}</p></Td>
-                    <Td>{showImagen(v.foto_v)}</Td>
+                    <Td><p>{v.celular}</p></Td>
+                    <Td>{v.rol}</Td>
+                    <Td>{v.user}</Td>
+                    <Td>*******</Td>
+                    <Td>{v.correo}</Td>
                     <Td>
                       <Botonesacciones
                         onClick={() => {
@@ -96,7 +96,7 @@ const Informacion = () => {
                       </Botonesacciones>
                       <Botonesacciones
                         onClick={() => {
-                          deleteInformacion(v.id, getApi);
+                          deleteInformacion(v.id_usuario, getApi);
                         }}
                       >
                         <Imgeliminar src={Eliminar} alt="" />

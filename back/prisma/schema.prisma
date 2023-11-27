@@ -43,8 +43,8 @@ model blog {
 model Promociones {
   id_promociones Int         @id @default(autoincrement())
   nombre         String
-  fecha_inicio   DateTime
-  fecha_fin      DateTime
+  fecha_inicio   String
+  fecha_fin      String
   descuento      Int
   id_sucur       Int
   sucur          Sucursales? @relation(fields: [id_sucur], references: [id_sucursal])

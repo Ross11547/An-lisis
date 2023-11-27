@@ -30,18 +30,9 @@ import styled from "styled-components";
 import { deletePrograma } from "../services/programa";
 import { showImagen } from "../services/noimagen";
 const Programa = () => {
-  const { loading, getApi, res: programa } = UseFech(getPrograma);
-  const [actual, setActual] = useState({});
-  const [data,setData]=useState();
-  const getProducto = async () => {
-    const response = await fetch(`http://localhost:5000/usuarios`);
-    const js = await response.json();
-    setData(js)
-  }
-  useEffect(() => {
-    getProducto();
-  }, [])
-  console.log(data);
+  const { loading, getApi, res: promociones } = UseFech(getPrograma);
+  console.log(promociones);
+   const [actual, setActual] = useState({});
   if (loading) {
     return (
       <Divloading>
@@ -60,7 +51,6 @@ const Programa = () => {
             getApi={getApi}
             actual={actual}
             setActual={setActual}
-            //can={programa.length}
           />
           <Divtabla1>
             <Tabla className="table">
@@ -79,7 +69,7 @@ const Programa = () => {
               </thead>
 
               <tbody>
-                {programa?.map((v, i) => (
+                {promociones?.map((v, i) => (
                   <Trbody className="row" key={i}>
                     <Td>{i+1}</Td>
                     <Td>Roxaa</Td>
@@ -103,7 +93,7 @@ const Programa = () => {
                       </Botonesacciones>
                       <Botonesacciones
                         onClick={() => {
-                          deletePrograma(v.id, getApi);
+                          deletePrograma(v.id_promociones, getApi);
                         }}
                       >
                         <Imgeliminar src={Eliminar} alt="" />

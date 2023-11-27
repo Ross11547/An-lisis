@@ -3,7 +3,7 @@ const baseUrl =
 
 export const getInformacion = async () => {
   try {
-    const response = await fetch(`${baseUrl}informacion`, {
+    const response = await fetch(`${baseUrl}usuario`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -17,7 +17,7 @@ export const getInformacion = async () => {
   }
 };
 export const deleteInformacion = async (id, callback) => {
-  const response = await fetch(`${baseUrl}informacion/${id}`, {
+  const response = await fetch(`${baseUrl}usuario/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -50,21 +50,23 @@ export const updateInformacion = async (actual, callback) => {
     callback();
   }
 }
-export const postInformacion = async (titulo, foto, mision, fotomision, descripcion, vision, fotovision, callback) => {
-  const response = await fetch(`${baseUrl}informacion`, {
+export const postInformacion = async (nombres, apellidos, CI, celular, rol, user, password,correo, callback) => {
+  const response = await fetch(`${baseUrl}usuario`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       accept: "application/json",
     },
     body: JSON.stringify({
-      nombre: titulo,
-      foto: foto,
-      descripcion: descripcion,
-      mision: mision,
-      foto_m: fotomision,
-      vision: vision,
-      foto_v: fotovision,
+      nombres:nombres,
+      apellidos:apellidos, 
+      CI:Number(CI),       
+      celular:Number(celular),   
+      rol:rol,       
+      user:user,     
+      password:password,  
+      correo:correo     
+ 
     }),
   });
   if (response.ok) {

@@ -21,12 +21,10 @@ import Loadig2 from "./components/app/Pruevacarga";
 function App() {
   return (
     <div>
-
-      
       <BrowserRouter>
         <Routes >
           <Route path="/" element={<Navbar/>}>
-          <Route path="portada" element={<Portada />} />
+          <Route path="/portada" element={<Portada />} />
           <Route path="capsulas" element={<Capsulas />} />
           <Route path="centros" element={<Centros />} />
           <Route path="detallecentro" element={<Detallecentro />} />
@@ -34,10 +32,8 @@ function App() {
           <Route path="programa" element={<Programa />} />
           <Route path="redcentro" element={<Redcentros />} />
           </Route>
-         
         </Routes>
       </BrowserRouter>
-      
     </div>
   );
 }

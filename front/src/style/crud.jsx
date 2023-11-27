@@ -80,6 +80,7 @@ export const Botonagregar = styled.button`
   border: none;
   background: #533710;
   color: #fff;
+  cursor:pointer;
   transition: 0.5s;
   &:hover {
     transition: 0.5s;
