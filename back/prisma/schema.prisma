@@ -69,8 +69,9 @@ model Venta {
   id_venta      Int             @id @default(autoincrement())
   costo_total   Float
   fecha_venta   DateTime        @default(now())
-  descuento     Int
+  descuento     Float
   id_usu        Int
+   tipo_pago        String
   usuario       Usuario?        @relation(fields: [id_usu], references: [id_usuario])
   detalle_venta Detalle_Venta[]
 }
@@ -78,8 +79,6 @@ model Venta {
 model Detalle_Venta {
   id_detalle_venta Int        @id @default(autoincrement())
   cantidad         Int
-  descuento        Int
-  tipo_pago        String
   id_vent          Int
   vent             Venta?     @relation(fields: [id_vent], references: [id_venta])
   id_product       Int
