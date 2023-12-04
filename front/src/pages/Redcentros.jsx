@@ -22,7 +22,7 @@ import Registroredcentros from "../components/redcentros/Registroredcentros";
 import { getRed } from "../services/red";
 import { UseFech } from "../hooks/useFech";
 import { deleteRed } from "../services/red";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 const Redcentros = () => {
   const { loading, getApi, res: blog } = UseFech(getRed);
   const [actual, setActual] = useState({});
@@ -52,6 +52,7 @@ const Redcentros = () => {
                   <Th>#</Th>
                   <Th>Producto</Th>
                   <Th>Descripcion</Th>
+                  <Th>Foto</Th>
                   <Th>Acciones</Th>
                 </Tr>
               </thead>
@@ -59,8 +60,14 @@ const Redcentros = () => {
                 {blog?.map((v, i) => (
                   <Trbody className="row" key={i}>
                     <Td>{1 + i}</Td>
-                    <Td>{v.productos.nombre}</Td>
+                    <Td>{v.foto ? "Nuevo Producto :D" : v.productos.nombre }</Td>
                     <Td>{v.descripcion}</Td>
+                    <Td>
+                      {
+                        v.foto ? <img style={{width:"70px", height:"70px"}} src={v.foto} alt="" /> : <img style={{width:"70px", height:"70px"}} src={v.productos.foto} alt="" />
+                      }
+                      
+                    </Td>
                     <Td>
                       <Botonesacciones
                         onClick={() => {

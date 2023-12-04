@@ -20,7 +20,7 @@ const Nav = () => {
   return (
     <>
       <Abot onClick={handleClick}>
-        <h2>Tamizaje neonatal</h2>
+        <h2>Ceibo</h2>
       </Abot>
      
     

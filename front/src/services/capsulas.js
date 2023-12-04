@@ -35,9 +35,9 @@ export const updateCapsulas = async (actual, callback) => {
       "accept": "application/json",
     },
     body: JSON.stringify({
-      telefono:Number(actual.telefono),
+      telefono: Number(actual.telefono),
       calles: actual.calles,
-      numero:Number(actual.numero),
+      numero: Number(actual.numero),
       zona: actual.zona,
     }),
   });
@@ -45,7 +45,7 @@ export const updateCapsulas = async (actual, callback) => {
     callback();
   }
 }
-export const postCapsulas = async (telefono, calles, numero, zona, callback) => {
+export const postCapsulas = async (telefono, calles, numero, zona, foto, callback) => {
   const response = await fetch(`${baseUrl}sucursales`, {
     method: "POST",
     headers: {
@@ -53,10 +53,11 @@ export const postCapsulas = async (telefono, calles, numero, zona, callback) => 
       accept: "application/json",
     },
     body: JSON.stringify({
-      telefono:Number(telefono),
+      telefono: Number(telefono),
       calles: calles,
       numero: Number(numero),
       zona: zona,
+      foto: foto
     })
   });
   if (response.ok) {

@@ -43,7 +43,7 @@ export const updateRed = async (actual, callback) => {
     callback();
   }
 }
-export const postRed = async (descripcion,idProducto, callback) => {
+export const postRed = async (descripcion,foto,idProducto, callback) => {
   const response = await fetch(`${baseUrl}blog`, {
     method: "POST",
     headers: {
@@ -52,6 +52,7 @@ export const postRed = async (descripcion,idProducto, callback) => {
     },
     body: JSON.stringify({
       descripcion: descripcion,
+      foto: foto,
       id_productos:Number(idProducto)
     }),
   });

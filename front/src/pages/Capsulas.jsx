@@ -59,6 +59,7 @@ const Capsulas = () => {
                   <Th>Calles</Th>
                   <Th>Numero</Th>
                   <Th>Zona</Th>
+                  <Th>Foto</Th>
                   <Th>Acciones</Th>
                 </Tr>
               </thead>
@@ -74,6 +75,11 @@ const Capsulas = () => {
                     <Tddescripcion>
                       <Pcon>{v.zona}</Pcon>
                     </Tddescripcion>
+                      <Td>
+                        {
+                          <Img src={v.foto} alt="" />
+                        }
+                      </Td>
                     <Td>
                       <Botonesacciones
                         onClick={() => {

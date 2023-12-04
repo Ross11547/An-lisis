@@ -18,6 +18,7 @@ const Registrocapsulas = ({ getApi, actual, setActual }) => {
   const [calles, setCalles] = useState("");
   const [numero, setNumero] = useState();
   const [zona, setZona] = useState("");
+  const [foto, setFoto] = useState("");
   useEffect(() => {
     if (Object.keys(actual).length > 0) {
       setTelefono(actual.telefono);
@@ -68,6 +69,14 @@ const Registrocapsulas = ({ getApi, actual, setActual }) => {
                 onChange={(e) => setZona(e.target.value)}
               ></Input>
             </Divinput>
+            <Divinput>
+              <Label>Foto</Label>
+              <Input
+                type="text"
+                value={foto}
+                onChange={(e) => setFoto(e.target.value)}
+              ></Input>
+            </Divinput>
           </Divtextarea>
         </Divinputotal>
         <Botonagregar
@@ -87,15 +96,17 @@ const Registrocapsulas = ({ getApi, actual, setActual }) => {
                   setCalles("");
                   setNumero("");
                   setZona("");
+                  setFoto("");
                   getApi();
                 }
               );
             } else {
-              postCapsulas(telefono, calles, numero, zona, () => {
+              postCapsulas(telefono, calles, numero, zona,foto, () => {
                 setTelefono("");
                 setCalles("");
                 setNumero("");
                 setZona("");
+                setFoto("");
                 getApi();
               });
             }

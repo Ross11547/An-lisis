@@ -91,7 +91,7 @@ const Footerr = styled.div`
   width: 100%;
   height: 400px;
   max-height: 450px;
-  background-color: #616469;
+  background-color: #4d4235;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -110,7 +110,7 @@ const Divredes = styled.div`
   gap: 1em;
 
   & > a {
-    background-color: #fff;
+    background-color: #4d4235;
     z-index: 2;
     color: #39725e;
     text-decoration: none;
@@ -132,7 +132,7 @@ const Divredes = styled.div`
     content: "";
     width: 100%;
     height: 2px;
-    background-color: #ffffff87;
+    background-color: #4d4235;
     z-index: 1;
   }
 `;
@@ -169,7 +169,7 @@ const Navegacion = styled.div`
 const Formulario = styled.section`
   width: calc(100% / 3);
   height: 100%;
-  background-color: #b0d3c785;
+  background-color: #4d4235;
   display: flex;
   flex-direction: column;
   justify-items: center;

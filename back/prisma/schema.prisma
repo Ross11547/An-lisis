@@ -12,6 +12,7 @@ datasource db {
 
 model Sucursales {
   id_sucursal Int           @id @default(autoincrement())
+  foto        String
   telefono    Int
   calles      String
   numero      Int
@@ -36,7 +37,8 @@ model Productos {
 model blog {
   id_blog      Int        @id @default(autoincrement())
   descripcion  String
-  id_productos Int
+  foto         String
+  id_productos Int ?
   productos    Productos? @relation(fields: [id_productos], references: [id])
 }
 
@@ -61,7 +63,7 @@ model Usuario {
   rol        String
   user       String
   password   String
-  correo     String  
+  correo     String
   venta      Venta[]
 }
 

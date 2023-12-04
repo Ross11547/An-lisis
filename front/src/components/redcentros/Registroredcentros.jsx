@@ -16,6 +16,7 @@ const Registroredcentros = ({ getApi, actual, setActual }) => {
   const [red, setRed] = useState("");
   const [idProducto, setIdproducto] = useState();
   const [descripcion, setDescripcion] = useState("");
+  const [foto, setFoto] = useState("");
   const{res}=UseFech(getPortada);
   useEffect(() => {
     if (Object.keys(actual).length > 0) {
@@ -34,6 +35,14 @@ const Registroredcentros = ({ getApi, actual, setActual }) => {
             type="text"
             value={descripcion}
             onChange={(e) => setDescripcion(e.target.value)}
+          />
+        </Divinput>
+        <Divinput>
+          <Label htmlFor="">Foto</Label>
+          <Input
+            type="text"
+            value={foto}
+            onChange={(e) => setFoto(e.target.value)}
           />
         </Divinput>
         <Divinput>
@@ -62,7 +71,8 @@ const Registroredcentros = ({ getApi, actual, setActual }) => {
                 }
               );
             } else {
-              postRed(descripcion,idProducto, () => {
+              postRed(descripcion,foto,idProducto, () => {
+                setFoto("");
                 setDescripcion("");              
                 getApi();
               });

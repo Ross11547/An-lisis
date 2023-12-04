@@ -10,8 +10,6 @@ import Informacionicons from "../assets/navbar/icons8-grupo-de-usuarios-de-la-nu
 import Programaicons from "../assets/navbar/icons8-descuento-50.png";
 import Redcentrosicons from "../assets/navbar/icons8-blog-50.png";
 const Navbar = () => {
-
-  
   return (
     <Navbarnav>
       <Nav>
@@ -34,6 +32,9 @@ const Navbar = () => {
           <Linkes to="redcentro">
             <Imgicons src={Redcentrosicons} alt="" /> Blog
           </Linkes>
+          <Linkes to="http://localhost:3000/">
+             Salir
+          </Linkes>
         </Navlink>
       </Nav>
       <Datos>
@@ -48,7 +49,7 @@ const Navbarnav = styled.div`
   min-width: 100vh;
   display: flex;
   flex-direction: column;
-  background: #fafafa;
+  background: #ded9d2;
   overflow: hidden;
 `;
 const Datos = styled.div`
@@ -59,7 +60,7 @@ const Datos = styled.div`
 const Nav = styled.div`
   width: 100%;
   height: 10vh;
-  background: #ffffff;
+  background: #ded9d2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,7 +79,7 @@ const Navlink = styled.div`
   @media (max-width: 500px) {
     flex-direction:column;
     height:auto;
-    background-color:#fff;
+    background-color:#ded9d2;
     position:absolute;
   }
 `;
@@ -95,7 +96,7 @@ const Linkes = styled(Link)`
   margin: 10px 10px 0px 10px;
   padding: 20px;
   text-decoration: none;
-  color: #232423;
+  color: #000000;
   transition: 0.5s;
   border-bottom: solid 1px #fff5;
   gap:1em;

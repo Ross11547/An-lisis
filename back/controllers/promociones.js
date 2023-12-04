@@ -1,23 +1,28 @@
 const express = require("express");
-const {PrismaClient} = require("@prisma/client");
+const { PrismaClient } = require("@prisma/client");
 const app = express();
 const prisma = new PrismaClient();
 
-app.get('/promociones',async(req,res)=>{
-    const promociones = await prisma.promociones.findMany({});
+app.get('/promociones', async (req, res) => {
+    const promociones = await prisma.promociones.findMany({
+        include: {
+            produc: true,
+            sucur: true
+        }
+    });
     res.json(promociones);
 })
 
-app.post('/promociones',async(req,res) => {
+app.post('/promociones', async (req, res) => {
     const promociones = await prisma.promociones.create({
         data: req.body
     })
     res.json(promociones)
 })
 
-app.put('/promociones/:id',async(req,res) => {
+app.put('/promociones/:id', async (req, res) => {
     const promociones = await prisma.promociones.update({
-        where:{
+        where: {
             id_promociones: Number(req.params.id)
         },
         data: req.body
@@ -25,9 +30,9 @@ app.put('/promociones/:id',async(req,res) => {
     res.json(promociones)
 })
 
-app.delete('/promociones/:id',async(req,res) => {
+app.delete('/promociones/:id', async (req, res) => {
     const promociones = await prisma.promociones.delete({
-        where:{
+        where: {
             id_promociones: Number(req.params.id)
         }
     })

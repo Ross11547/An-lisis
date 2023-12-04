@@ -63,6 +63,7 @@ const Programa = () => {
                   <Th>Descuento</Th>
                   <Th>Sucursal</Th>
                   <Th>Producto</Th>
+                  <Th>Foto</Th>
                   <Th>Acciones</Th>
                
                 </Tr>
@@ -72,16 +73,21 @@ const Programa = () => {
                 {promociones?.map((v, i) => (
                   <Trbody className="row" key={i}>
                     <Td>{i+1}</Td>
-                    <Td>Roxaa</Td>
-                    <Td>13-11-2023</Td>
+                    <Td>{v.nombre}</Td>
+                    <Td>{v.fecha_inicio}</Td>
                     <Td>
-                      13-12-2023
+                      {v.fecha_fin}
                     </Td>
-                    <Td>10bs</Td>
+                    <Td>{v.descuento}</Td>
                     <Td>
-                      <Pcon>sacaba</Pcon>
+                      <Pcon>{v.sucur.calles}</Pcon>
                     </Td>
-                    <Td>chocolate dulce</Td>
+                    <Td>{v.produc.nombre}</Td>
+                    <Td>
+                        {
+                          <Img src={v.produc.foto} alt="" />
+                        }
+                      </Td>
                  
                     <Td>
                       <Botonesacciones
