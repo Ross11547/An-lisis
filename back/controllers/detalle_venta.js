@@ -4,7 +4,11 @@ const app = express();
 const prisma = new PrismaClient();
 
 app.get('/detalleventa',async(req,res)=>{
-    const detalleventa = await prisma.detalle_Venta.findMany({});
+    const detalleventa = await prisma.detalle_Venta.findMany({
+        include: {
+            product:true
+        }
+    });
     res.json(detalleventa);
 })
 
