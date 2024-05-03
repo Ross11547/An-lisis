@@ -24,7 +24,7 @@ function App() {
       <BrowserRouter>
         <Routes >
           <Route path="/" element={<Navbar/>}>
-          <Route path="/portada" element={<Portada />} />
+          <Route path="" element={<Portada />} />
           <Route path="capsulas" element={<Capsulas />} />
           <Route path="centros" element={<Centros />} />
           <Route path="detallecentro" element={<Detallecentro />} />

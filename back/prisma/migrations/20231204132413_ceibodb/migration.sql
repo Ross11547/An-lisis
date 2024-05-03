@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "Sucursales" (
     "id_sucursal" SERIAL NOT NULL,
+    "foto" TEXT NOT NULL,
     "telefono" INTEGER NOT NULL,
     "calles" TEXT NOT NULL,
     "numero" INTEGER NOT NULL,
@@ -15,8 +16,8 @@ CREATE TABLE "Productos" (
     "nombre" TEXT NOT NULL,
     "descripcion" TEXT NOT NULL,
     "cantidad" INTEGER NOT NULL,
-    "precio" DECIMAL(65,30) NOT NULL,
-    "peso_neto" DECIMAL(65,30) NOT NULL,
+    "precio" DOUBLE PRECISION NOT NULL,
+    "peso_neto" DOUBLE PRECISION NOT NULL,
     "descuento" INTEGER NOT NULL,
     "foto" TEXT NOT NULL,
 
@@ -27,7 +28,8 @@ CREATE TABLE "Productos" (
 CREATE TABLE "blog" (
     "id_blog" SERIAL NOT NULL,
     "descripcion" TEXT NOT NULL,
-    "id_productos" INTEGER NOT NULL,
+    "foto" TEXT NOT NULL,
+    "id_productos" INTEGER,
 
     CONSTRAINT "blog_pkey" PRIMARY KEY ("id_blog")
 );
@@ -36,8 +38,8 @@ CREATE TABLE "blog" (
 CREATE TABLE "Promociones" (
     "id_promociones" SERIAL NOT NULL,
     "nombre" TEXT NOT NULL,
-    "fecha_inicio" TIMESTAMP(3) NOT NULL,
-    "fecha_fin" TIMESTAMP(3) NOT NULL,
+    "fecha_inicio" TEXT NOT NULL,
+    "fecha_fin" TEXT NOT NULL,
     "descuento" INTEGER NOT NULL,
     "id_sucur" INTEGER NOT NULL,
     "id_produc" INTEGER NOT NULL,
@@ -46,30 +48,28 @@ CREATE TABLE "Promociones" (
 );
 
 -- CreateTable
-CREATE TABLE "Cliente" (
-    "id_cliente" SERIAL NOT NULL,
+CREATE TABLE "Usuario" (
+    "id_usuario" SERIAL NOT NULL,
     "nombres" TEXT NOT NULL,
     "apellidos" TEXT NOT NULL,
     "CI" INTEGER NOT NULL,
     "celular" INTEGER NOT NULL,
-    "fecha_nac" TIMESTAMP(3) NOT NULL,
-    "calles" TEXT NOT NULL,
-    "numero" INTEGER NOT NULL,
-    "zona" TEXT NOT NULL,
-    "usuario" TEXT NOT NULL,
+    "rol" TEXT NOT NULL,
+    "user" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "correo" TEXT NOT NULL,
 
-    CONSTRAINT "Cliente_pkey" PRIMARY KEY ("id_cliente")
+    CONSTRAINT "Usuario_pkey" PRIMARY KEY ("id_usuario")
 );
 
 -- CreateTable
 CREATE TABLE "Venta" (
     "id_venta" SERIAL NOT NULL,
-    "costo_total" DECIMAL(65,30) NOT NULL,
-    "fecha_venta" TIMESTAMP(3) NOT NULL,
-    "descuento" INTEGER NOT NULL,
-    "id_client" INTEGER NOT NULL,
+    "costo_total" DOUBLE PRECISION NOT NULL,
+    "fecha_venta" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "descuento" DOUBLE PRECISION NOT NULL,
+    "id_usu" INTEGER NOT NULL,
+    "tipo_pago" TEXT NOT NULL,
 
     CONSTRAINT "Venta_pkey" PRIMARY KEY ("id_venta")
 );
@@ -78,34 +78,14 @@ CREATE TABLE "Venta" (
 CREATE TABLE "Detalle_Venta" (
     "id_detalle_venta" SERIAL NOT NULL,
     "cantidad" INTEGER NOT NULL,
-    "descuento" INTEGER NOT NULL,
-    "tipo_pago" TEXT NOT NULL,
     "id_vent" INTEGER NOT NULL,
     "id_product" INTEGER NOT NULL,
 
     CONSTRAINT "Detalle_Venta_pkey" PRIMARY KEY ("id_detalle_venta")
 );
 
--- CreateTable
-CREATE TABLE "Administrador" (
-    "id_administrador" SERIAL NOT NULL,
-    "nombres" TEXT NOT NULL,
-    "apellidos" TEXT NOT NULL,
-    "celular" INTEGER NOT NULL,
-    "fecha_nac" TIMESTAMP(3) NOT NULL,
-    "calles" TEXT NOT NULL,
-    "numero" INTEGER NOT NULL,
-    "zona" TEXT NOT NULL,
-    "usuario" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
-    "correo" TEXT NOT NULL,
-    "id_client" INTEGER NOT NULL,
-
-    CONSTRAINT "Administrador_pkey" PRIMARY KEY ("id_administrador")
-);
-
 -- AddForeignKey
-ALTER TABLE "blog" ADD CONSTRAINT "blog_id_productos_fkey" FOREIGN KEY ("id_productos") REFERENCES "Productos"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "blog" ADD CONSTRAINT "blog_id_productos_fkey" FOREIGN KEY ("id_productos") REFERENCES "Productos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Promociones" ADD CONSTRAINT "Promociones_id_sucur_fkey" FOREIGN KEY ("id_sucur") REFERENCES "Sucursales"("id_sucursal") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -114,13 +94,10 @@ ALTER TABLE "Promociones" ADD CONSTRAINT "Promociones_id_sucur_fkey" FOREIGN KEY
 ALTER TABLE "Promociones" ADD CONSTRAINT "Promociones_id_produc_fkey" FOREIGN KEY ("id_produc") REFERENCES "Productos"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Venta" ADD CONSTRAINT "Venta_id_client_fkey" FOREIGN KEY ("id_client") REFERENCES "Cliente"("id_cliente") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Venta" ADD CONSTRAINT "Venta_id_usu_fkey" FOREIGN KEY ("id_usu") REFERENCES "Usuario"("id_usuario") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Detalle_Venta" ADD CONSTRAINT "Detalle_Venta_id_vent_fkey" FOREIGN KEY ("id_vent") REFERENCES "Venta"("id_venta") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Detalle_Venta" ADD CONSTRAINT "Detalle_Venta_id_product_fkey" FOREIGN KEY ("id_product") REFERENCES "Productos"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Administrador" ADD CONSTRAINT "Administrador_id_client_fkey" FOREIGN KEY ("id_client") REFERENCES "Cliente"("id_cliente") ON DELETE RESTRICT ON UPDATE CASCADE;

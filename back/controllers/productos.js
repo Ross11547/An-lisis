@@ -37,7 +37,7 @@ app.delete('/productos/:id', async(req,res) => {
     })
 })
 
-/* app.get('/productos/:id', async (req, res) => {
+app.get('/productos/:id', async (req, res) => {
     const producto = await prisma.productos.findUnique({
       where: {
         id: parseInt(req.params.id),
@@ -52,6 +52,6 @@ app.delete('/productos/:id', async(req,res) => {
     }
   
     res.json(producto);
-  }); */
+  }); 
 
 module.exports = app;

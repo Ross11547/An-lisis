@@ -15,22 +15,22 @@ const Navbar = () => {
       <Nav>
         <Navlink>
           <Logo>
-            <h1>Ceibo</h1>
+            <h1>LOGO</h1>
           </Logo>
           <Linkes to="/">
-            <Imgicons src={Portadaicons} alt="" /> Producto
+            <Imgicons src={Portadaicons} alt="" /> Formularios
           </Linkes>
           <Linkes to="capsulas">
-            <Imgicons src={Capsulasicons} alt="" /> Sucursales
-          </Linkes>
-          <Linkes to="informacion">
             <Imgicons src={Informacionicons} alt="" /> Usuario
           </Linkes>
+          <Linkes to="redcentro">
+            <Imgicons src={Redcentrosicons} alt="" /> Licitaciones
+          </Linkes>
           <Linkes to="programa">
-            <Imgicons src={Programaicons} alt="" /> Promociones
+            <Imgicons src={Programaicons} alt="" /> Convocatorias
           </Linkes>
           <Linkes to="redcentro">
-            <Imgicons src={Redcentrosicons} alt="" /> Blog
+            <Imgicons src={Redcentrosicons} alt="" /> Empresas
           </Linkes>
           <Linkes to="http://localhost:3000/">
              Salir
@@ -49,7 +49,7 @@ const Navbarnav = styled.div`
   min-width: 100vh;
   display: flex;
   flex-direction: column;
-  background: #ded9d2;
+  background: #ffffff;
   overflow: hidden;
 `;
 const Datos = styled.div`
@@ -60,12 +60,12 @@ const Datos = styled.div`
 const Nav = styled.div`
   width: 100%;
   height: 10vh;
-  background: #ded9d2;
+  background: #20293b;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  box-shadow:0px 5px 10px #0005;
+  box-shadow:0px 5px 10px #4b464654;
   position:fixed;
  
 `;
@@ -79,7 +79,7 @@ const Navlink = styled.div`
   @media (max-width: 500px) {
     flex-direction:column;
     height:auto;
-    background-color:#ded9d2;
+    background-color:#000000;
     position:absolute;
   }
 `;
@@ -96,7 +96,7 @@ const Linkes = styled(Link)`
   margin: 10px 10px 0px 10px;
   padding: 20px;
   text-decoration: none;
-  color: #000000;
+  color: #ffffff;
   transition: 0.5s;
   border-bottom: solid 1px #fff5;
   gap:1em;
@@ -104,7 +104,7 @@ const Linkes = styled(Link)`
   &:hover {
 transform:translateY(0.5em);
 
-    background: #CC9544;
+    background: #8f8b86;
     color: #fff;
     transition: 0.5s;
   }
@@ -116,7 +116,7 @@ transform:translateY(0.5em);
 const Logo = styled.div`
   cursor: default;
   display: flex;
-  background-color:#603601;
+  background-color:transparent;
   height:100%;
   width:200px;
   justify-content: center;

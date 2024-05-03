@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import { update } from "../../services/portada";
 import { postPortada } from "../../services/portada";
 import { getBase64 } from "../../services/converter";
+import { Link } from "react-router-dom";
 const Registroportada = ({ getApi, actual, setActual, can }) => {
   const [nombre, setNombre] = useState("");
   const [foto, setFoto] = useState("");
@@ -67,8 +68,11 @@ const Registroportada = ({ getApi, actual, setActual, can }) => {
         </Divinput>
         <Divinput>
           <Label>Foto</Label>
-          <Inputfile type="file" onChange={llenarImagen} />
-          <Imgfile src={foto} alt="" />
+          <Input
+                type="text"
+                value={foto}
+                onChange={(e) => setFoto(e.target.value)}
+              ></Input>
         </Divinput>
         <Divinput>
           <Label htmlFor="">Precio</Label>

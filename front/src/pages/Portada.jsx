@@ -41,7 +41,7 @@ const Portada = () => {
     <Container>
       <Containerdiv>
         <Divtitulo>
-          <h1>Productos</h1>
+          <h1>Convocatoria</h1>
         </Divtitulo>
         <Divcrudf>
           <Registroportada
@@ -55,12 +55,11 @@ const Portada = () => {
                 <Tr>
                   <Th>#</Th>
                   <Th>Nombre</Th>
-                  <Th>Foto</Th>
                   <Th>Descripcion</Th>
                   <Th>Precio</Th>
                   <Th>Peso_neto</Th>
                   <Th>Descuento</Th>
-                  <Th>Precio</Th>
+                  <Th>Cantidad</Th>
                   <Th>Acciones</Th>
                 </Tr>
               </thead>

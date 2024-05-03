@@ -43,11 +43,11 @@ export const postPortada = async (nombre,foto,descripcion,cantidad,precio,peso_n
   console.log({
     nombre: nombre,
     descripcion:descripcion,
-    cantidad:cantidad,
-    precio:precio,
-    peso_neto:peso_neto,
+    cantidad:+cantidad,
+    precio:+precio,
+    peso_neto:+peso_neto,
     foto: foto,
-    descuento:descuento
+    descuento:+descuento
 })
   const response = await fetch(`${baseUrl}productos`, {
     method: "POST",
@@ -58,11 +58,11 @@ export const postPortada = async (nombre,foto,descripcion,cantidad,precio,peso_n
     body: JSON.stringify({
       nombre: nombre,
       descripcion:descripcion,
-      cantidad:cantidad,
-      precio:precio,
-      peso_neto:peso_neto,
+      cantidad:+cantidad,
+      precio:+precio,
+      peso_neto:+peso_neto,
       foto: foto,
-      descuento:descuento
+      descuento:+descuento
   })});
   if(response.ok){
     callback();
